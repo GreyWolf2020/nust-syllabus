@@ -9,11 +9,10 @@
 \LoadClass{article}
 
 \makeatletter
-\newcommand{\@course}{Mathematics}
+\newcommand{\@course}{Mathe}
 \newcommand{\course}[1]{\renewcommand{\@course}{#1}}
 \makeatother
 
-\date{\ifcase\month\or Winter\or Winter\or March\or Spring\or Spring\or Spring\or Summer\or Summer\or Autumn\or Autumn\or Autumn\or Autumn\fi\space\number\year}
 
 \usepackage{graphicx}
 \usepackage{geometry}
@@ -21,17 +20,6 @@
 
 \usepackage{titlesec}
 
-
- 
-
-
-\makeatletter
-\renewcommand{\maketitle}{%
-  \begin{center}%
-    {\large\textsf{\textbf{\@title\hfill\@course}}\vspace{0.5ex}\hrule\vspace{0.5ex}}
-    {\large\textsf{\@date\hfill\@author}}
-  \end{center}}
-\makeatother
 
 \titleformat{\section}{\sffamily\bfseries}
 {\Large\thesection}{0pt}{\Large}[{\titlerule[0.5pt]}]  % {\Large\thesection}{0pt}{ \linebreak\Large}[{\titlerule[0.5pt]}]  \linebreak\Large

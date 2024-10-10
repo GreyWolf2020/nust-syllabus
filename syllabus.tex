@@ -21,6 +21,7 @@
 
 % PACKAGES
 \usepackage{geometry, booktabs}
+\usepackage[british]{datetime2}
 \usepackage{mathabx, color} % square bullets in itemized list
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -55,9 +56,11 @@
 \setlength{\parskip}{0in}
 
 
-% USER-DEFINED COMMANDS
-\newcommand{\peem}{\textsc{p.m.}}
-\newcommand{\ayem}{\textsc{a.m.}}
+\renewcommand{\maketitle}[3]{%
+  \begin{center}%
+  {\large\textsf{\textbf{\hfill {#1}}}\vspace{0.5ex}\hrule\vspace{0.5ex}}
+  {\large\textsf{Department of {#2}\hfill {#3}}}
+  \end{center}}
 
 
 % STYLE OVERRIDES
@@ -66,15 +69,15 @@
 
 
 % LOGO and HEADER 
-  \title{\includegraphics[scale=1.0]{assets/logo.png}}
-  \input{\global/header}
+%  \title{\includegraphics[scale=1.0]{assets/logo.png}}
+%  \input{\global/header}
 
 
 % DOCUMENT
 % ----------------------------------------------------- %
 \begin{document}
-\maketitle
-
+  \DTMsavedate{mydate}{2022-06-30}
+  \maketitle{Mathematincs}{Mathematics and Science}{\DTMusedate{mydate}}
 
 % ----------------------------------------------------- %
 % COURSE INFO
@@ -86,13 +89,12 @@
   \end{tabular}}
   \vspace{2ex}\hrule\vspace{2ex}
 
-
 % ----------------------------------------------------- %
 % NSTRUCTOR INFO
-  \subsection*{Instructor Information}
+  \subsection*{Lecturer Information}
   \noindent\parbox{0.5\textwidth}{%
   \noindent\begin{tabular}{@{}ll}
-  \input{\global/instructor.tex}
+  \input{\local/instructor}
   \end{tabular}}
   \vspace{2ex}\hrule\vspace{2ex}
 
@@ -117,14 +119,6 @@
   \input{\local/learningoutcomes}
   \vspace{2ex}\hrule\vspace{2ex}
 
- 
-% ----------------------------------------------------- %
-% EQUIPMENT
-% https://sites.udel.edu/computing-purchases/personal-specs/
-  \subsection*{Essential Equipment}
-  \input{\local/equipment}
-  \vspace{2ex}\hrule\vspace{2ex}
-
    
 % ----------------------------------------------------- %
 % Grade Evaluation
@@ -132,34 +126,12 @@
   \input{\local/evaluation.tex}
   \vspace{2ex}\hrule\vspace{2ex}
 
-
-% ----------------------------------------------------- %
-\if\topics1
-{
-  \subsection*{Topic Schedule}
-  \input{\local/schedule}
+  % ----------------------------------------------------- %
+% EQUIPMENT
+% https://sites.udel.edu/computing-purchases/personal-specs/
+  \subsection*{Essential Equipment}
+  \input{\local/equipment}
   \vspace{2ex}\hrule\vspace{2ex}
-}
-\fi
 
 
-% ----------------------------------------------------- %
-\if\importantdates1
-{
-  \subsection*{Important Dates}
-  \input{\common/importantdates}
-  \vspace{2ex}\hrule\vspace{2ex}
-}
-\fi
-
-
-% ----------------------------------------------------- %
-\if\policies1
-{
-  \subsection*{Policies, Support Services, and Other Information}
-  \input{\local/policies}
-  \vspace{2ex}\hrule\vspace{2ex}
-}
-\fi
- 
 \end{document} % /END DOCUMENT
