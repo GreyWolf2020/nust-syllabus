@@ -6,10 +6,6 @@
 %           :  MIT License
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-% DIRECTORIES
-\def\common{./common} % Common to ALL your syllabi (e.g., instructor)
-\def\local{./local}
-\def\assets{./assets}
 
 % SETTINGS
 \input{configs}
@@ -20,21 +16,40 @@
 
 
 % PACKAGES
+\usepackage[hidelinks]{hyperref}
+\usepackage[many]{tcolorbox}
+\usepackage{longtable}
+\usepackage[
+  mode=match,
+  propagate-math-font=true,
+  reset-math-version=false,
+  reset-text-family=false,
+  reset-text-series=false,
+  text-family-to-math=true,
+  text-series-to-math=true,
+  math-ohm = {\ensuremath{\Omega}},
+  text-ohm = {\ensuremath{\Omega}}
+]{siunitx}
 \usepackage{geometry, booktabs}
 \usepackage[british]{datetime2}
 \usepackage{mathabx, color} % square bullets in itemized list
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{hyperref}
-\usepackage{nopageno}
 \usepackage{multicol}
 \usepackage{tabularx}
 \usepackage{rotating}
+\usepackage{romannum}
 \usepackage{calc}
+
+\tcbuselibrary{breakable}
+
+
 
 % Outline - Enumerated Lists
 \usepackage{outlines}
 \usepackage{enumitem}
+\usepackage{lstdoc}
+\usepackage{caption}
 \setenumerate[1]{label=\arabic*.}
 \setenumerate[2]{label=(\alph*).}
 \setenumerate[3]{label=\roman*.}
@@ -58,14 +73,15 @@
 
 \renewcommand{\maketitle}[3]{%
   \begin{center}%
-  {\large\textsf{\textbf{\hfill {#1}}}\vspace{0.5ex}\hrule\vspace{0.5ex}}
-  {\large\textsf{Department of {#2}\hfill {#3}}}
+  {\large\textsf{\textbf{{#1}}}\vspace{0.5ex}\hrule\vspace{0.5ex}}
+  {\large\textsf{Department of {#2}}}
   \end{center}}
 
 
 % STYLE OVERRIDES
 % Puts a blue bullet for list items.  Comment out for standard bullet
 \renewcommand{\labelitemi}{\includegraphics[]{\assets/blue_bullet.png}}
+
 
 
 % LOGO and HEADER 
@@ -76,62 +92,64 @@
 % DOCUMENT
 % ----------------------------------------------------- %
 \begin{document}
-  \DTMsavedate{mydate}{2022-06-30}
-  \maketitle{Mathematincs}{Mathematics and Science}{\DTMusedate{mydate}}
+  \include{local/coverpage.tex}
+  \pagenumbering{arabic}
+  \include{programme/tee.tex}
+  \newpage
+  \include{\partOne/plc1101.tex}
+  \newpage
+  \include{\partOne/scs1101.tex}
+  \newpage
+  \include{\partOne/sma1116.tex}
+  \newpage
+  \include{\partOne/plc1201.tex}
+  \newpage
+  \include{\partOne/scs1205.tex}
+  \newpage
+  \include{\partTwo/sma2116.tex}
+  \newpage
+  \include{\partTwo/tee2101.tex}
+  \newpage
+  \include{\partTwo/tee2112.tex}
+  \newpage
+  \include{\partTwo/tee2201.tex}
+  \newpage
+  \include{\partTwo/tee2202.tex}
+  \newpage
+  \include{\partTwo/tee2211.tex}
+  \newpage
+  \include{\partTwo/tee2232.tex}
+  \newpage
+  \include{\partThree/sma3116.tex}
+  \newpage
+  \include{\partThree/tee3101.tex}
+  \newpage
+  \include{\partThree/tee3111.tex}
+  \newpage
+  \include{\partThree/tee3121.tex}
+  \newpage
+  \include{\partThree/tee3201.tex}
+  \newpage
+  \include{\partThree/tee3232.tex}
+  \newpage
+  \include{\partThree/tee3241.tex}
+  \newpage
+  \include{\partFive/tee5101.tex}
+  \newpage
+  \include{\partFive/tee5111.tex}
+  \newpage
+  \include{\partFive/tee5121.tex}
+  \newpage
+  \include{\partFive/tee5133.tex}
+  \newpage
+  \include{\partFive/tee5141.tex}
+  \newpage
+  \include{\partFive/tee5224.tex}
+  \newpage
+  \include{\partFive/tee5241.tex}
+  \newpage
 
-% ----------------------------------------------------- %
-% COURSE INFO
-  \subsection*{Course Information}
-  \vspace{0ex}%
-  \noindent\parbox{0.5\textwidth}{%
-  \noindent\begin{tabular}{@{}ll}
-  \input{\local/courseinfo}
-  \end{tabular}}
-  \vspace{2ex}\hrule\vspace{2ex}
 
-% ----------------------------------------------------- %
-% NSTRUCTOR INFO
-  \subsection*{Lecturer Information}
-  \noindent\parbox{0.5\textwidth}{%
-  \noindent\begin{tabular}{@{}ll}
-  \input{\local/instructor}
-  \end{tabular}}
-  \vspace{2ex}\hrule\vspace{2ex}
-
- 
-% ----------------------------------------------------- %
-% COURSE DESCRIPTION
-  \subsection*{Course description} 
-  \input{\local/description}
-  \vspace{2ex} \hrule\vspace{2ex}
- 
- 
-% ----------------------------------------------------- %
-% COURSE TOPICS
-  \subsection*{Topics} 
-  \input{\local/topics}
-  \vspace{2ex} \hrule\vspace{2ex}
- 
-
-% ----------------------------------------------------- %
-% LEARNING OUTCOMES
-  \subsection*{Learning Outcomes}
-  \input{\local/learningoutcomes}
-  \vspace{2ex}\hrule\vspace{2ex}
-
-   
-% ----------------------------------------------------- %
-% Grade Evaluation
-  \subsection*{Course Evaluation and Grading Policies} 
-  \input{\local/evaluation.tex}
-  \vspace{2ex}\hrule\vspace{2ex}
-
-  % ----------------------------------------------------- %
-% EQUIPMENT
-% https://sites.udel.edu/computing-purchases/personal-specs/
-  \subsection*{Essential Equipment}
-  \input{\local/equipment}
-  \vspace{2ex}\hrule\vspace{2ex}
 
 
 \end{document} % /END DOCUMENT
